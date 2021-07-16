@@ -1,29 +1,47 @@
 export interface PhotoI {
-  id: number;
-  sol: number;
-  camera: CameraI;
-  img_src: string;
-  earth_date: string;
-  rover: RoverBaseI;
+    id: number;
+    sol: number;
+    camera: CameraI;
+    img_src: string;
+    earth_date: string;
+    rover: RoverBaseI;
 }
 
 export interface CameraI {
-  id: number;
-  name: string;
-  rover_id: number;
-  full_name: string;
+    id: number;
+    name: string;
+    rover_id: number;
+    full_name: string;
 }
 
 export interface RoverBaseI {
-  id: number;
-  name: string;
-  landing_date: string;
-  launch_date: string;
-  status: string;
+    id: number;
+    name: string;
+    landing_date: string;
+    launch_date: string;
+    status: string;
 }
 
 export interface RoverFullI extends RoverBaseI {
-  max_sol: number;
-  max_date: string;
-  cameras: CameraI[];
+    max_sol: number;
+    max_date: string;
+    cameras: CameraI[];
+}
+
+export interface SolPhotoI {
+    sol: number;
+    earth_date: string;
+    total_photos: number;
+    cameras: string[];
+}
+
+export interface RoverManifestI {
+    name: string;
+    landing_date: string;
+    launch_date: string;
+    status: string;
+    max_sol: number;
+    max_date: string;
+    total_photos: number;
+    photos: SolPhotoI[];
 }

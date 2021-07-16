@@ -10,7 +10,7 @@ export const SolInputFC: React.FC = () => {
         : 0;
 
     return (
-        <>
+        <div>
             <p>Martian days since landing:</p>
             <SolInputBox
                 className="solInputBox"
@@ -33,6 +33,6 @@ export const SolInputFC: React.FC = () => {
                     }
                 }}
             />
-        </>
+        </div>
     );
 };
