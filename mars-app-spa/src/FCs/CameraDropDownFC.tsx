@@ -4,11 +4,23 @@ import { selectedRoverContext } from "../selectedRoverContext";
 import { DropDownFC } from "./dropDownFC";
 
 export const CameraDropDownFC: React.FC = () => {
-    const programContext = useContext(selectedRoverContext);
+    const { rover, solPhoto, setCamera } = useContext(selectedRoverContext);
     const [cameras, setCameras] = useState<CameraI[]>([]);
     useEffect(() => {
-        setCameras(programContext.rover?.cameras || []);
-    }, [programContext.rover]);
+        if (rover && solPhoto) {
+            let cameraList: CameraI[] = [];
+            for (const camName of solPhoto.cameras) {
+                const cam = rover.cameras.find((cam) => cam.name == camName);
+                if (cam) {
+                    cameraList.push(cam);
+                }
+            }
+            setCameras(cameraList);
+            console.log(cameraList);
+        } else {
+            setCameras([]);
+        }
+    }, [solPhoto]);
 
     const cameraDropDownOptions = cameras.map((camera, index) => {
         return { value: index, label: camera.full_name };
@@ -19,7 +31,7 @@ export const CameraDropDownFC: React.FC = () => {
             <p>Camera Drop Down:</p>
             <DropDownFC
                 options={cameraDropDownOptions}
-                onSelect={(index) => programContext.setCamera(cameras[index])}
+                onSelect={(index) => setCamera(cameras[index])}
             />
         </div>
     );

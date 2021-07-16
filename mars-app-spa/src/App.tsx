@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "./Styles/App.css";
-import { CameraI, PhotoI, RoverFullI, RoverManifestI } from "./nasaInterfaces";
+import {
+    CameraI,
+    PhotoI,
+    RoverFullI,
+    RoverManifestI,
+    SolPhotoI,
+} from "./nasaInterfaces";
 import { selectedRoverContext } from "./selectedRoverContext";
 import { PhotoCollection } from "./FCs/PhotoCollectionFC";
 import { SendRequestButtonFC } from "./FCs/SendRequestButtonFC";
@@ -10,6 +16,7 @@ function App() {
         RoverFullI | undefined
     >();
     const [manifest, setManifest] = useState<RoverManifestI | undefined>();
+    const [solPhoto, setSolPhoto] = useState<SolPhotoI | undefined>();
     const [selectedCamera, setSelectedCamera] = useState<CameraI | undefined>();
     const [sol, setSol] = useState<number | undefined>();
 
@@ -20,10 +27,12 @@ function App() {
             value={{
                 rover: selectedRover,
                 manifest: manifest,
+                solPhoto: solPhoto,
                 camera: selectedCamera,
                 sol: sol,
                 setRover: setSelectedRover,
                 setManifest: setManifest,
+                setSolPhoto: setSolPhoto,
                 setCamera: setSelectedCamera,
                 setSol: setSol,
             }}

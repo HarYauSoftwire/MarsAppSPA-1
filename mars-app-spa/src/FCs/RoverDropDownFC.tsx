@@ -24,6 +24,8 @@ export const RoverDropDownFC: React.FC = () => {
                 options={roverDropDownOptions}
                 onSelect={async (index) => {
                     programContext.setRover(rovers[index]);
+                    programContext.setCamera(undefined);
+                    programContext.setSolPhoto(undefined);
                     const manifest = await getFromApi<RoverManifestI>(
                         `http://localhost:8000/manifest/${rovers[index].name}`
                     );
