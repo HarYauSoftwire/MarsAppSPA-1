@@ -1,5 +1,5 @@
 import React from 'react';
-import './TitleParagraphsImage.css'
+import '../Styles/TitleParagraphsImage.css'
 export const TitleParagraphsImageFC : React.FC <TitleParagraphsImageProps> = 
     ({title,paragraph1,paragraph2,image})=>{
         return (

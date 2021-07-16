@@ -12,7 +12,7 @@ export const CameraDropDownFC : React.FC =
       }, [programContext.rover]);
 
     const cameraDropDownOptions = cameras.map((camera, index) => {
-    return { value: index, label: camera.name };
+    return { value: index, label: camera.full_name };
     });
 
     return (

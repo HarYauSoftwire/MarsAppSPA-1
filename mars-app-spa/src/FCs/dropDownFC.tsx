@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import "./dropDownFC.css";
+import "../Styles/dropDownFC.css";
 
 type DropDownProps = {
   options: {
