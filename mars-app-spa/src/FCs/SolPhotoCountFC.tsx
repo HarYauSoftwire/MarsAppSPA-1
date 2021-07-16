@@ -1,13 +1,7 @@
-import { useContext } from "react";
-import { selectedRoverContext } from "../selectedRoverContext";
-
-export const SolPhotoCountFC: React.FC = () => {
-    const { sol, solPhoto } = useContext(selectedRoverContext);
+export const SolPhotoCountFC: React.FC<{ photoCount?: number }> = ({
+    photoCount,
+}) => {
     return (
-        <>
-            {sol !== undefined && (
-                <p>Number of photos: {solPhoto ? solPhoto.total_photos : 0}</p>
-            )}
-        </>
+        <>{photoCount !== undefined && <p>Number of photos: {photoCount}</p>}</>
     );
 };

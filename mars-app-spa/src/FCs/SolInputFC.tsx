@@ -1,12 +1,18 @@
-import React, { useContext } from "react";
-import { selectedRoverContext } from "../selectedRoverContext";
+import React from "react";
 import { PaddedDiv } from "../Styles/PaddedDiv";
 import { SolInputBox } from "../Styles/SolInput";
 
-export const SolInputFC: React.FC = () => {
-    const { rover, manifest, setSolPhoto, sol, setSol } =
-        useContext(selectedRoverContext);
-    const maxSol: number = rover ? rover.max_sol : 0;
+type SolInputProps = {
+    sol?: number;
+    setSol: (sol?: number) => void;
+    maxSol: number;
+};
+
+export const SolInputFC: React.FC<SolInputProps> = ({
+    sol,
+    setSol,
+    maxSol,
+}) => {
     return (
         <PaddedDiv>
             <p>Martian days since landing:</p>
@@ -17,13 +23,7 @@ export const SolInputFC: React.FC = () => {
                 onChange={(e) => {
                     const solString = e.target.value;
                     try {
-                        const sol = convertStringToSol(solString, maxSol);
-                        setSol(sol);
-                        setSolPhoto(
-                            manifest?.photos?.find(
-                                (solPhoto) => solPhoto.sol === sol
-                            )
-                        );
+                        setSol(convertStringToSol(solString, maxSol));
                     } catch (error) {}
                 }}
             />
