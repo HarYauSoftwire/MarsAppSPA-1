@@ -1,12 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { selectedRoverContext } from "../selectedRoverContext";
 import { SolInputBox } from "../Styles/SolInput";
 
 export const SolInputFC: React.FC = () => {
-    const [inputStr, setInputStr] = useState("");
-    const { rover, manifest, setCamera, setSolPhoto, setSol } =
+    const { rover, manifest, setCamera, setSolPhoto, sol, setSol } =
         useContext(selectedRoverContext);
     const maxSol: number = rover ? rover.max_sol : 0;
+
+    useEffect(() => {
+        setCamera(undefined);
+    }, [setCamera, sol]);
 
     return (
         <>
@@ -16,24 +19,20 @@ export const SolInputFC: React.FC = () => {
                     <SolInputBox
                         className="solInputBox"
                         type="text"
-                        value={inputStr}
+                        value={sol !== undefined ? sol.toString() : ""}
                         onChange={(e) => {
                             let newStr = e.target.value;
-                            const regexp = /^0*(0|[1-9][0-9]*)$/;
+                            const regexp = /^[0-9]+$/;
                             if (newStr === "") {
-                                setCamera(undefined);
-                                setInputStr("");
                                 setSol(undefined);
+                                setSolPhoto(undefined);
                             } else if (regexp.test(newStr)) {
                                 let sol = Number(newStr);
                                 if (sol > maxSol) {
                                     sol = maxSol;
                                     newStr = maxSol.toString();
                                 }
-                                setCamera(undefined);
-                                setInputStr(newStr.replace(regexp, "$1"));
                                 setSol(sol);
-
                                 setSolPhoto(
                                     manifest.photos.find(
                                         (solPhoto) => solPhoto.sol === sol

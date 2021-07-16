@@ -31,7 +31,7 @@ export const CameraDropDownFC: React.FC = () => {
             <p>Camera:</p>
             <DropDownFC
                 options={cameraDropDownOptions}
-                value={{ label: camera?.name }}
+                value={{ label: camera?.full_name }}
                 onSelect={(index) => setCamera(cameras[index])}
             />
         </div>

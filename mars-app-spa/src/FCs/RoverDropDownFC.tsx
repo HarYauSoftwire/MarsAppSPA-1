@@ -5,7 +5,8 @@ import { selectedRoverContext } from "../selectedRoverContext";
 import { DropDownFC } from "./dropDownFC";
 
 export const RoverDropDownFC: React.FC = () => {
-    const programContext = useContext(selectedRoverContext);
+    const { rover, setRover, setManifest, setCamera, setSolPhoto, setSol } =
+        useContext(selectedRoverContext);
     const [rovers, setRovers] = useState<RoverFullI[]>([]);
     const roverDropDownOptions = rovers.map((rover, index) => {
         return { value: index, label: rover.name };
@@ -17,21 +18,25 @@ export const RoverDropDownFC: React.FC = () => {
             );
         })();
     }, []);
+
+    useEffect(() => {
+        setCamera(undefined);
+        setSolPhoto(undefined);
+        setSol(undefined);
+    }, [rover, setCamera, setSolPhoto, setSol]);
+
     return (
         <div>
             <p>Rover:</p>
             <DropDownFC
                 options={roverDropDownOptions}
-                value={{ label: programContext.rover?.name }}
+                value={{ label: rover?.name }}
                 onSelect={async (index) => {
-                    programContext.setRover(rovers[index]);
-                    programContext.setCamera(undefined);
-                    programContext.setSolPhoto(undefined);
+                    setRover(rovers[index]);
                     const manifest = await getFromApi<RoverManifestI>(
                         `http://localhost:8000/manifest/${rovers[index].name}`
                     );
-                    console.log(manifest);
-                    programContext.setManifest(manifest);
+                    setManifest(manifest);
                 }}
             />
         </div>

@@ -5,7 +5,7 @@ export const SolPhotoCountFC: React.FC = () => {
     const { sol, solPhoto } = useContext(selectedRoverContext);
     return (
         <>
-            {sol && (
+            {sol !== undefined && (
                 <p>Number of photos: {solPhoto ? solPhoto.total_photos : 0}</p>
             )}
         </>
