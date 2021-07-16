@@ -1,11 +1,11 @@
 import React from "react";
 import { PhotoI } from "../nasaInterfaces";
-import "../Styles/PhotoFC.css";
+import { PhotoImage } from "../Styles/Photo";
 
 export const PhotoFC: React.FC<{ photo: PhotoI }> = ({ photo }) => {
-  return (
-    <>
-      <img className="marsPhoto" src={photo.img_src} />
-    </>
-  );
+    return (
+        <>
+            <PhotoImage className="marsPhoto" src={photo.img_src} />
+        </>
+    );
 };
