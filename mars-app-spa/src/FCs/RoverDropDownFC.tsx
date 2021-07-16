@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import getFromApi from "../getFromApi";
 import { RoverFullI, RoverManifestI } from "../nasaInterfaces";
 import { selectedRoverContext } from "../selectedRoverContext";
+import { PaddedDiv } from "../Styles/PaddedDiv";
 import { DropDownFC } from "./dropDownFC";
 
 export const RoverDropDownFC: React.FC = () => {
@@ -26,7 +27,7 @@ export const RoverDropDownFC: React.FC = () => {
     }, [rover, setCamera, setSolPhoto, setSol]);
 
     return (
-        <div>
+        <PaddedDiv>
             <p>Rover:</p>
             <DropDownFC
                 options={roverDropDownOptions}
@@ -39,6 +40,6 @@ export const RoverDropDownFC: React.FC = () => {
                     setManifest(manifest);
                 }}
             />
-        </div>
+        </PaddedDiv>
     );
 };

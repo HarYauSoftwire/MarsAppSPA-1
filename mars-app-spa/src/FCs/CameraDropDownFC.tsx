@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { CameraI } from "../nasaInterfaces";
 import { selectedRoverContext } from "../selectedRoverContext";
+import { PaddedDiv } from "../Styles/PaddedDiv";
 import { DropDownFC } from "./dropDownFC";
 
 export const CameraDropDownFC: React.FC = () => {
@@ -27,13 +28,13 @@ export const CameraDropDownFC: React.FC = () => {
     });
 
     return (
-        <div>
+        <PaddedDiv>
             <p>Camera:</p>
             <DropDownFC
                 options={cameraDropDownOptions}
                 value={{ label: camera?.full_name }}
                 onSelect={(index) => setCamera(cameras[index])}
             />
-        </div>
+        </PaddedDiv>
     );
 };

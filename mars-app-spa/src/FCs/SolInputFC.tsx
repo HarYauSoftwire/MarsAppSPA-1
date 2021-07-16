@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { selectedRoverContext } from "../selectedRoverContext";
+import { PaddedDiv } from "../Styles/PaddedDiv";
 import { SolInputBox } from "../Styles/SolInput";
 
 export const SolInputFC: React.FC = () => {
@@ -14,7 +15,7 @@ export const SolInputFC: React.FC = () => {
     return (
         <>
             {manifest && (
-                <div>
+                <PaddedDiv>
                     <p>Martian days since landing:</p>
                     <SolInputBox
                         className="solInputBox"
@@ -41,7 +42,7 @@ export const SolInputFC: React.FC = () => {
                             }
                         }}
                     />
-                </div>
+                </PaddedDiv>
             )}
         </>
     );
