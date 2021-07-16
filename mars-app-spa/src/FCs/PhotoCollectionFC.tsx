@@ -4,9 +4,12 @@ import { PhotoI } from "../nasaInterfaces";
 import { PhotoFC } from "./PhotoFC";
 import { ArrowButton, Grid } from "../Styles/PhotoCollection";
 
-export const PhotoCollection: React.FC<{ photos: PhotoI[] }> = ({ photos }) => {
+export const PhotoCollection: React.FC<{ photos?: PhotoI[] }> = ({ photos }) => {
     const [pagination, setPagination] = useState({ start: 0, end: numPerPage });
 
+    if (!photos) {
+        return <></>;
+    }
     if (photos.length === 0) {
         return <p>No photos available</p>;
     }

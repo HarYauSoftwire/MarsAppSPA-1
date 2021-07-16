@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Styles/App.css";
 import {
     CameraI,
@@ -16,11 +16,21 @@ function App() {
         RoverFullI | undefined
     >();
     const [manifest, setManifest] = useState<RoverManifestI | undefined>();
+    const [sol, setSol] = useState<number | undefined>();
     const [solPhoto, setSolPhoto] = useState<SolPhotoI | undefined>();
     const [selectedCamera, setSelectedCamera] = useState<CameraI | undefined>();
-    const [sol, setSol] = useState<number | undefined>();
 
-    const [photos, setPhotos] = useState<PhotoI[]>([]);
+    const [photos, setPhotos] = useState<PhotoI[] | undefined>();
+
+    useEffect(() => {
+        setSol(undefined);
+    }, [manifest]);
+    useEffect(() => {
+        setSelectedCamera(undefined);
+    }, [solPhoto]);
+    useEffect(() => {
+        setPhotos(undefined);
+    }, [selectedCamera]);
 
     return (
         <selectedRoverContext.Provider

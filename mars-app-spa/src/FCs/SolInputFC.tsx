@@ -1,16 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { selectedRoverContext } from "../selectedRoverContext";
 import { PaddedDiv } from "../Styles/PaddedDiv";
 import { SolInputBox } from "../Styles/SolInput";
 
 export const SolInputFC: React.FC = () => {
-    const { rover, manifest, setCamera, setSolPhoto, sol, setSol } =
+    const { rover, manifest, setSolPhoto, sol, setSol } =
         useContext(selectedRoverContext);
     const maxSol: number = rover ? rover.max_sol : 0;
-
-    useEffect(() => {
-        setCamera(undefined);
-    }, [setCamera, sol]);
 
     return (
         <>
