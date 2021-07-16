@@ -4,7 +4,7 @@ import { SolInputBox } from "../Styles/SolInput";
 
 export const SolInputFC: React.FC = () => {
     const [inputStr, setInputStr] = useState("");
-    const { rover, manifest, setSolPhoto, setSol } =
+    const { rover, manifest, setCamera, setSolPhoto, setSol } =
         useContext(selectedRoverContext);
     const maxSol: number = rover ? rover.max_sol : 0;
 
@@ -21,6 +21,7 @@ export const SolInputFC: React.FC = () => {
                             let newStr = e.target.value;
                             const regexp = /^0*(0|[1-9][0-9]*)$/;
                             if (newStr === "") {
+                                setCamera(undefined);
                                 setInputStr("");
                                 setSol(undefined);
                             } else if (regexp.test(newStr)) {
@@ -29,6 +30,7 @@ export const SolInputFC: React.FC = () => {
                                     sol = maxSol;
                                     newStr = maxSol.toString();
                                 }
+                                setCamera(undefined);
                                 setInputStr(newStr.replace(regexp, "$1"));
                                 setSol(sol);
 

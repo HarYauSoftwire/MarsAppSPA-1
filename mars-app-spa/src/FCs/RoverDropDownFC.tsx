@@ -19,9 +19,10 @@ export const RoverDropDownFC: React.FC = () => {
     }, []);
     return (
         <div>
-            <p>Rover Drop Down:</p>
+            <p>Rover:</p>
             <DropDownFC
                 options={roverDropDownOptions}
+                value={{ label: programContext.rover?.name }}
                 onSelect={async (index) => {
                     programContext.setRover(rovers[index]);
                     programContext.setCamera(undefined);
